@@ -6,5 +6,86 @@
 
 {% block main %}
 
+    <!-- tabs -->
+    <div class="container my-5">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <button class="nav-link active" id="nav-pending-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-pending" type="button" role="tab" aria-controls="nav-pending"
+                aria-selected="true">Pending</button>
+
+                <button class="nav-link" id="nav-approved-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-approved" type="button" role="tab" aria-controls="nav-approved"
+                aria-selected="true">Approved</button>
+
+                <button class="nav-link" id="nav-denied-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-denied" type="button" role="tab" aria-controls="nav-denied"
+                aria-selected="true">Denied</button>
+
+                <button class="nav-link" id="nav-closed-tab" data-bs-toggle="tab"
+                data-bs-target="#nav-closed" type="button" role="tab" aria-controls="nav-closed"
+                aria-selected="true">Closed</button>
+
+            </div>
+        </nav>
+        <div class="tab-content" id="tab-content">
+            <div class="tab-pane show active p-3" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+                <table class="table table bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Invoice No.</th>
+                            <th>Invoice Date</th>
+                            <th>Total Value</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tab-pane p-3" id="nav-approved" role="tabpanel" aria-labelledby="nav-approved-tab">
+                <table class="table table bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Invoice No.</th>
+                            <th>Invoice Date</th>
+                            <th>Total Value</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tab-pane p-3" id="nav-denied" role="tabpanel" aria-labelledby="nav-denied-tab">
+                <table class="table table bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Invoice No.</th>
+                            <th>Invoice Date</th>
+                            <th>Total Value</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="tab-pane p-3" id="nav-closed" role="tabpanel" aria-labelledby="nav-closed-tab">
+                <table class="table table bordered table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer Name</th>
+                            <th>Invoice No.</th>
+                            <th>Invoice Date</th>
+                            <th>Total Value</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

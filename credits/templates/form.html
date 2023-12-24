@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Form
+{% endblock %}
+
+{% block main %}
+    <form action="/form" method="post">
+        <div class="mb-3">
+            <input autocomplete="on" autofocus class="form-control mx-auto w-auto" id="customerID" name="customerID" placeholder="Customer ID" type="text" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="invoice" name="invoice" placeholder="Invoice No." type="text" required>
+        </div>
+        <div class="mb-3">
+            <label>Invoice Date:</label>
+            <input class="form-control mx-auto w-auto" id="invoiceDate" name="invoiceDate" placeholder="Invoice Date" type="date" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="run" name="run" placeholder="Run No." type="text" required>
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="driver" name="driver" placeholder="Driver" type="text" required>
+        </div>
+        <div class="mb-3">
+            <label>Notified Date:</label>
+            <input class="form-control mx-auto w-auto" id="notifiedDate" name="notifiedDate" placeholder="Notified Date" type="date" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+
+    </form>
+{% endblock %}

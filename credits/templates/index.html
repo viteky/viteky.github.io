@@ -30,7 +30,7 @@
         </nav>
         <div class="tab-content" id="tab-content">
             <div class="tab-pane show active p-3" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
-                <table class="table table bordered table-striped">
+                <table class="table table bordered table-striped table-hover table-responsive">
                     <thead class="thead-light">
                         <tr>
                             <th>ID</th>
@@ -41,6 +41,18 @@
                             <th></th>
                         </tr>
                     </thead>
+
+                    <tbody>
+                        {% for credit in credits %}
+                            <tr class="clickable-row" data-href="/claim?id={{ credit.id }}">
+                                <td><a href="/claim?id={{ credit.id }}">{{ credit.id }}</a></form></td>
+                                <td>Customer Name</td>
+                                <td>{{ credit.invoice }}</td>
+                                <td>{{ credit.invoiceDate }}</td>
+
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                 </table>
             </div>
             <div class="tab-pane p-3" id="nav-approved" role="tabpanel" aria-labelledby="nav-approved-tab">

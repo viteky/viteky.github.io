@@ -1,8 +1,8 @@
 from os import remove
 from credits import app, db, bcrypt
-from credits.models import User, Claim, Role, Item
+from credits.models import User, Claim, Item
 from credits.helpers import save_picture
-from credits.forms import registrationForm, loginForm, updateAccountForm, newClaimForm
+from credits.forms import registrationForm, loginForm, updateAccountForm, newClaimForm, adminControlForm
 from flask import redirect, render_template, request, session, url_for, flash
 from flask_login import login_user, login_required, logout_user, current_user
 
@@ -10,7 +10,10 @@ from flask_login import login_user, login_required, logout_user, current_user
 @app.route("/")
 @login_required
 def index():
-    return render_template("index.html")
+    claims = Claim.query.all()
+    user = User.query.filter_by(id=current_user.id).first()
+
+    return render_template("index.html", claims=claims, user=user)
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -91,3 +94,24 @@ def new_claim():
         flash(f"New claim for invoice {form.invoice_num.data} created!")
     return render_template("claim_form.html", form=form)
         
+
+@app.route("/admin", methods=["GET", "POST"])
+@login_required
+def admin():
+    """Admin control panel"""
+    admin = User.query.filter_by(id=current_user.id).first()
+    users = User.query.all()
+
+    for user in users:
+        form = adminControlForm()
+
+        if form.validate_on_submit():
+            user.is_admin = form.is_admin
+            user.is_approver = form.is_approver
+            db.session.commit()
+            flash("User updated")
+            return redirect(url_for("admin"))
+    
+    return render_template("admin.html", users=users, form=form)
+
+

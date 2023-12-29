@@ -15,15 +15,11 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default="default_user.jpg")
     password = db.Column(db.String(60), nullable=False)
     claims = db.relationship('Claim', backref='user', lazy=True)
-    roles = db.relationship('Role', backref='user', lazy=True)
-
+    is_admin = db.Column(db.Boolean, default=False)
+    is_approver = db.Column(db.Boolean, default=False)
+    
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.first_name}', '{self.last_name}', '{self.image_file}')"
-
-
-class Role(db.Model):
-    role = db.Column(db.String(20), primary_key=True, default='viewer')
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 
 class Claim(db.Model):

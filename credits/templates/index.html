@@ -30,7 +30,7 @@
         </nav>
         <div class="tab-content" id="tab-content">
             <div class="tab-pane show active p-3" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
-                <table class="table table bordered table-striped table-hover table-responsive">
+                <table class="table table-striped table-hover table-responsive accordion">
                     <thead class="thead-light">
                         <tr>
                             <th>ID</th>
@@ -38,18 +38,22 @@
                             <th>Invoice No.</th>
                             <th>Invoice Date</th>
                             <th>Total Value</th>
-                            <th></th>
+                            <th><!-- buttons header --></th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        {% for credit in credits %}
-                            <tr class="clickable-row" data-href="/claim?id={{ credit.id }}">
-                                <td><a href="/claim?id={{ credit.id }}">{{ credit.id }}</a></form></td>
+                        {% for claim in claims %}
+                            <tr data-bs-toggle="collapse" data-bs-target="#r{{ claim.id }}">
+                                <td>{{ claim.id }}</td>
                                 <td>Customer Name</td>
-                                <td>{{ credit.invoice }}</td>
-                                <td>{{ credit.invoiceDate }}</td>
-
+                                <td>{{ claim.invoice_num }}</td>
+                                <td>{{ claim.invoice_date.strftime('%Y-%m-%d') }}</td>
+                            </tr>
+                            <tr class="accordion-collapse collapse" id="r{{ claim.id }}" data-bs-parent=".table">
+                                <td colspan="5">
+                                    Test
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -100,4 +104,6 @@
         </div>
     </div>
 
+
+ 
 {% endblock %}

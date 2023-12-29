@@ -4,7 +4,7 @@ from flask_login import current_user
 from wtforms import TextAreaField, StringField, PasswordField, SubmitField, BooleanField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 import email_validator
-from credits.models import User, Claim, Role, Item
+from credits.models import User, Claim, Item
 
 
 class registrationForm(FlaskForm):
@@ -77,3 +77,9 @@ class newClaimForm(FlaskForm):
         invoice = Claim.query.filter_by(invoice_num=invoice_num.data).first()
         if invoice:
             raise ValidationError("Claim already exists for this invoice")
+
+
+class adminControlForm(FlaskForm):
+    is_admin = BooleanField()
+    is_approver = BooleanField()
+    submit = SubmitField("Update User")

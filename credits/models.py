@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     is_approver = db.Column(db.Boolean, default=False)
     
     def __repr__(self):
-        return f"User('{self.username}', '{self.email}', '{self.first_name}', '{self.last_name}', '{self.image_file}')"
+        return f"User('{self.username}', '{self.email}', '{self.first_name}', '{self.last_name}')"
 
 
 class Claim(db.Model):

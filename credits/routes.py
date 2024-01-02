@@ -79,6 +79,14 @@ def account():
     return render_template("account.html", image_file=image_file, form=form)
 
 
+@app.route("/claim/<int:claim>", methods=["GET", "POST"])
+@login_required
+def claim():
+    claims = Claim.query.filter_by(id=claim)
+    return render_template("claim.html", claims=claims)
+
+
+
 @app.route("/claim/new", methods=["GET", "POST"])
 @login_required
 def new_claim():
@@ -99,18 +107,13 @@ def new_claim():
 @login_required
 def admin():
     """Admin control panel"""
-    admin = User.query.filter_by(id=current_user.id).first()
     users = User.query.all()
+    form = adminControlForm()
+    
 
-    for user in users:
-        form = adminControlForm()
-
-        if form.validate_on_submit():
-            user.is_admin = form.is_admin
-            user.is_approver = form.is_approver
-            db.session.commit()
-            flash("User updated")
-            return redirect(url_for("admin"))
+    if form.validate_on_submit():
+        db.session.commit()
+        flash("User updated")
     
     return render_template("admin.html", users=users, form=form)
 
